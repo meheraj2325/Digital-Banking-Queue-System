@@ -1,0 +1,182 @@
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+
+	<!-- For navbar -->
+	<link rel="stylesheet" href="/assets/cssFiles/navbar.css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+	<!-- For navbar -->
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Eita remove korle kaj kore login page er Navbar nahoi kaj kore na-->
+	<!-- <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    /> -->
+
+	<link rel="stylesheet" href="/assets/cssFiles/login.css">
+
+	<script src="/assets/jsFiles/bankSelector.js"></script>
+
+	<title>Registration-Care for me</title>
+</head>
+
+<body>
+	<!-- navigation bar -->
+	<%- include("./partials/navbar.ejs") %>
+
+	<div class="container">
+		<div class="wrapper">
+
+			<form action="/auth/login" method="post" name="Login_Form" class="form-login">
+				<h3 class="form-login-heading">Welcome! Please Sign In</h3>
+
+				<select class="form-control " id="bankInput" autofocus required>
+					<option disabled selected value>Select a Bank</option>
+				</select>
+
+				<select class="form-control " id="divisionInput" autofocus required>
+					<option disabled selected value>Select Division</option>
+				</select>
+
+				<select class="form-control " id="districtInput" autofocus required>
+					<option disabled selected value>Select District</option>
+				</select>
+
+				<select class="form-control " id="branchInput" autofocus required>
+					<option disabled selected value>Select a Branch</option>
+				</select>
+
+				<input type="password" class="form-control" name="password" id="password" placeholder="Password"
+					required />
+
+				<button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login"
+					type="Submit">Login</button>
+				<br>
+			</form>
+		</div>
+		<div class="wrapper2">
+			<form action="/auth/register" method="GET" name="Login_Form" class="form-login">
+				<p>Don't have an account? Register first</p>
+				<button class="btn btn-lg btn-primary btn-block" id="regesterBtn" name="Register" value="Register"
+					type="submit">Register</button>
+			</form>
+		</div>
+	</div>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+</body>
+
+<script>
+	const bankSelector = $("#bankInput");
+	const divisionSelector = $("#divisionInput");
+	const districtSelector = $("#districtInput");
+	const branchSelector = $("#branchInput");
+
+	// Displaying bank select options
+	bankSelector
+		.empty()
+		.append(`<option disabled selected value>Select a Bank</option>`);
+	for (let i = 0; i < BankAndBranchArray.length; i++) {
+		const bank = BankAndBranchArray[i].bankName;
+		bankSelector.append(`<option value="${bank}">${bank}</option>`);
+	}
+
+	// Displaying division select options
+	$("#bankInput").on("change", function () {
+		const bankIdx = $("#bankInput option:selected").index() - 1;
+
+		// clearing divisionSelector, districtSelector, branchSelector
+		divisionSelector
+			.empty()
+			.append(
+				`<option disabled selected value>Select Division</option>`
+			);
+
+		districtSelector
+			.empty()
+			.append(
+				`<option disabled selected value>Select District</option>`
+			);
+
+		branchSelector
+			.empty()
+			.append(
+				`<option disabled selected value>Select a Branch</option>`
+			);
+		const divisionArray = BankAndBranchArray[bankIdx].divisions;
+		for (let i = 0; i < divisionArray.length; i++) {
+			const division = divisionArray[i].divisionName;
+			divisionSelector.append(`<option value="${division}">${division}</option>`);
+		}
+	});
+
+	// Displaying district select options
+	$("#divisionInput").on("change", function () {
+		const bankIdx = $("#bankInput option:selected").index() - 1;
+		const divisionIdx = $("#divisionInput option:selected").index() - 1;
+
+		// clearing districtSelector, branchSelector
+		districtSelector
+			.empty()
+			.append(
+				`<option disabled selected value>Select District</option>`
+			);
+
+		branchSelector
+			.empty()
+			.append(
+				`<option disabled selected value>Select a Branch</option>`
+			);
+		const districtArray = BankAndBranchArray[bankIdx].divisions[divisionIdx].districts;
+		for (let i = 0; i < districtArray.length; i++) {
+			const district = districtArray[i].districtName;
+			districtSelector.append(`<option value="${district}">${district}</option>`);
+		}
+	});
+
+	// Displaying branch select options
+	$("#districtInput").on("change", function () {
+		const bankIdx = $("#bankInput option:selected").index() - 1;
+		const divisionIdx = $("#divisionInput option:selected").index() - 1;
+		const districtIdx = $("#districtInput option:selected").index() - 1;
+
+		// clearing branchSelector
+		branchSelector
+			.empty()
+			.append(
+				`<option disabled selected value>Select a Branch</option>`
+			);
+
+		const branchArray = BankAndBranchArray[bankIdx].divisions[divisionIdx].districts[districtIdx].branches;
+		for (let i = 0; i < branchArray.length; i++) {
+			const branch = branchArray[i];
+			branchSelector.append(`<option value="${branch}">${branch}</option>`);
+		}
+	});
+</script>
+
+</html>

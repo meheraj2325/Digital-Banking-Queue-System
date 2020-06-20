@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+
+  <!-- For navbar -->
+  <link rel="stylesheet" href="/assets/cssFiles/navbar.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+  <!-- For navbar -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+
+  <!-- Egula remove korle kaj kore nahoi, navbar kaj kore na-->
+  <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+
+  <script src="/assets/jsFiles/bankSelector.js"></script>
+  <script src="/assets/jsFiles/registration.js"></script>
+
+  <link rel="stylesheet" href="/assets/cssFiles/registration.css" />
+
+  <title>Registration - Digital Banking Queue System</title>
+</head>
+
+<body>
+  <!-- navigation bar -->
+	<%- include("./partials/navbar.ejs") %>
+
+  <div class="container box-container">
+    <form class="form-horizontal" role="form" method="POST" action="/auth/register">
+      <div class="form-title">
+        <h3>Please fill up the form to register</h3>
+      </div>
+      <div class="form-group">
+        <label for="bankInput" class="col-sm-3 control-label">Bank Name*</label>
+        <div class="col-sm-7">
+          <select class="form-control form-control-lg" id="bankInput" autofocus required>
+            <option disabled selected value> -- Select a Bank -- </option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Location*</label>
+        <div class="col-sm-3">
+          <select class="form-control form-control-lg" id="divisionInput" autofocus required>
+            <option disabled selected value> -- Select Division -- </option>
+          </select>
+        </div>
+        <div class="col-sm-4">
+          <select class="form-control form-control-lg" id="districtInput" required>
+            <option disabled selected value> -- Select District -- </option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="additionalLocation" class="col-sm-3 control-label"></label>
+        <div class="col-sm-7">
+          <input type="text" id="additionalLocation" placeholder="Additional location information" class="form-control"
+            name="additionalLocation" value="<%= typeof additionalLocation != 'undefined' ? additionalLocation : '' %>"
+            autofocus />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="branchName" class="col-sm-3 control-label">Branch Name*</label>
+        <div class="col-sm-7">
+          <select class="form-control form-control-lg" id="branchInput" required>
+            <option disabled selected value> -- Select a Branch -- </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phoneNumber" class="col-sm-3 control-label">Phone*</label>
+        <div class="col-sm-7">
+          <input type="text" id="phoneNumber" placeholder="Phone" class="form-control" name="phoneNumber"
+            value="<%= typeof phoneNumber != 'undefined' ? phoneNumber : '' %>" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="mobileNumber" class="col-sm-3 control-label">Mobile Number</label>
+        <div class="col-sm-7">
+          <input type="text" id="mobileNumber" placeholder="Mobile Number" class="form-control" name="mobileNumber"
+            value="<%= typeof mobileNumber != 'undefined' ? mobileNumber : '' %>" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email" class="col-sm-3 control-label">Email </label>
+        <div class="col-sm-7">
+          <input type="email" id="email" placeholder="Email" class="form-control" name="email"
+            value="<%= typeof email != 'undefined' ? email : '' %>" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password" class="col-sm-3 control-label">Password*</label>
+        <div class="col-sm-7">
+          <input type="password" id="password" placeholder="Password" class="form-control" name="password" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password2" class="col-sm-3 control-label">Confirm Password*</label>
+        <div class="col-sm-7">
+          <input type="password" id="password2" placeholder="Confirm Password" class="form-control" name="password2"
+            required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="agreement" class="col-sm-3 control-label"></label>
+        <div class="col-sm-7">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="agreement" required />
+            <p class="agreement">
+              I agree to the
+              <a href="/termsAndConditions">Terms & Conditions</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- /.form-group -->
+      <div class="form-group">
+        <div class="col-sm-7 col-sm-offset-3">
+          <span class="help-block">*Required fields</span>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">
+        Register
+      </button>
+    </form>
+    <!-- /form -->
+  </div>
+  <!-- ./container -->
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
+<script>
+  const bankSelector = $("#bankInput");
+  const divisionSelector = $("#divisionInput");
+  const districtSelector = $("#districtInput");
+  const branchSelector = $("#branchInput");
+
+  // Displaying bank select options
+  bankSelector
+    .empty()
+    .append(`<option disabled selected value> -- Select a Bank -- </option>`);
+  for (let i = 0; i < BankAndBranchArray.length; i++) {
+    const bank = BankAndBranchArray[i].bankName;
+    bankSelector.append(`<option value="${bank}">${bank}</option>`);
+  }
+
+  // Displaying division select options
+  $("#bankInput").on("change", function () {
+    const bankIdx = $("#bankInput option:selected").index() - 1;
+
+    // clearing divisionSelector, districtSelector, branchSelector
+    divisionSelector
+      .empty()
+      .append(
+        `<option disabled selected value> -- Select Division -- </option>`
+      );
+
+    districtSelector
+      .empty()
+      .append(
+        `<option disabled selected value> -- Select District -- </option>`
+      );
+
+    branchSelector
+      .empty()
+      .append(
+        `<option disabled selected value> -- Select a Branch -- </option>`
+      );
+    const divisionArray = BankAndBranchArray[bankIdx].divisions;
+    for (let i = 0; i < divisionArray.length; i++) {
+      const division = divisionArray[i].divisionName;
+      divisionSelector.append(`<option value="${division}">${division}</option>`);
+    }
+  });
+
+  // Displaying district select options
+  $("#divisionInput").on("change", function () {
+    const bankIdx = $("#bankInput option:selected").index() - 1;
+    const divisionIdx = $("#divisionInput option:selected").index() - 1;
+
+    // clearing districtSelector, branchSelector
+    districtSelector
+      .empty()
+      .append(
+        `<option disabled selected value> -- Select District -- </option>`
+      );
+
+    branchSelector
+      .empty()
+      .append(
+        `<option disabled selected value> -- Select a Branch -- </option>`
+      );
+    const districtArray = BankAndBranchArray[bankIdx].divisions[divisionIdx].districts;
+    for (let i = 0; i < districtArray.length; i++) {
+      const district = districtArray[i].districtName;
+      districtSelector.append(`<option value="${district}">${district}</option>`);
+    }
+  });
+
+  // Displaying branch select options
+  $("#districtInput").on("change", function () {
+    const bankIdx = $("#bankInput option:selected").index() - 1;
+    const divisionIdx = $("#divisionInput option:selected").index() - 1;
+    const districtIdx = $("#districtInput option:selected").index() - 1;
+
+    // clearing branchSelector
+    branchSelector
+      .empty()
+      .append(
+        `<option disabled selected value> -- Select a Branch -- </option>`
+      );
+
+    const branchArray = BankAndBranchArray[bankIdx].divisions[divisionIdx].districts[districtIdx].branches;
+    for (let i = 0; i < branchArray.length; i++) {
+      const branch = branchArray[i];
+      branchSelector.append(`<option value="${branch}">${branch}</option>`);
+    }
+  });
+</script>
+
+</html>
