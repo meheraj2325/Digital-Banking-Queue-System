@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
+// create express server
 const app = express();
 const port = process.env.PORT || 4000;
 
@@ -42,6 +43,11 @@ app.get('/auth/login', async (req, res) => {
     res.render('login');
 });
 
+app.post('/auth/login', async (req, res) => {
+  console.log(req.body);
+  res.redirect('back');
+});
+
 app.get('/auth/register', async (req, res) => {
   res.render('registration');
 });
@@ -55,4 +61,4 @@ app.get('/test',async (req, res) => {
   res.render('test');
 });
 
-app.listen(port, () => console.log('Server is running on port 4000'));
+app.listen(port, () => console.log(`Server is running on port ${port}`));

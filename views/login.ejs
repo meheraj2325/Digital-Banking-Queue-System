@@ -3,34 +3,34 @@
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
-
-	<!-- For navbar -->
-	<link rel="stylesheet" href="/assets/cssFiles/navbar.css">
-
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-		crossorigin="anonymous"></script>
-	<!-- For navbar -->
-
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<!-- Eita remove korle kaj kore login page er Navbar nahoi kaj kore na-->
-	<!-- <link
+	
+	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+
+	<!-- Bootstrap CSS
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+
+
+	<link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
-    /> -->
+    />
+
+
+	<!-- For navbar -->
+	<link rel="stylesheet" href="/assets/cssFiles/navbar.css">
+	<script src="/assets/jsFiles/navbar.js"></script>
+	<!-- For navbar -->
 
 	<link rel="stylesheet" href="/assets/cssFiles/login.css">
-
 	<script src="/assets/jsFiles/bankSelector.js"></script>
 
-	<title>Registration-Care for me</title>
+	<title>Login - Digital Banking Queue System</title>
 </head>
 
 <body>
@@ -43,19 +43,19 @@
 			<form action="/auth/login" method="post" name="Login_Form" class="form-login">
 				<h3 class="form-login-heading">Welcome! Please Sign In</h3>
 
-				<select class="form-control " id="bankInput" autofocus required>
+				<select class="form-control" name="bankName" id="bankInput" autofocus required>
 					<option disabled selected value>Select a Bank</option>
 				</select>
 
-				<select class="form-control " id="divisionInput" autofocus required>
+				<select class="form-control" name="division" id="divisionInput" autofocus required>
 					<option disabled selected value>Select Division</option>
 				</select>
 
-				<select class="form-control " id="districtInput" autofocus required>
+				<select class="form-control" name="district" id="districtInput" autofocus required>
 					<option disabled selected value>Select District</option>
 				</select>
 
-				<select class="form-control " id="branchInput" autofocus required>
+				<select class="form-control" name="branchName" id="branchInput" autofocus required>
 					<option disabled selected value>Select a Branch</option>
 				</select>
 
