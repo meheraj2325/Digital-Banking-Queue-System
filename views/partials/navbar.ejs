@@ -37,9 +37,22 @@
             <a class="nav-link" href="#">Link3</a>
           </li>
 
+          <% if( typeof bankName === 'undefined' || bankName == '') { %>
           <li class="nav-item">
             <a class="nav-link" href="/auth/login">Login</a>
           </li>
+          <% } %>
+
+          <% if( typeof bankName != 'undefined' && bankName != '') { %>
+          <li class="nav-item">
+            <h6><%= branchName %> branch, <%= bankName %></h6>
+          </li>
+
+          <li class="nav-item ">
+            <a class="nav-link " href="/auth/logout">Logout </a>
+          </li>
+          <% } %>
+
         </ul>
       </div>
     </div>
