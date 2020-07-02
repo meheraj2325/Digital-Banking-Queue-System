@@ -83,7 +83,7 @@ router.post("/register", async (req, res) => {
       password2
     });
   } else {
-    await BankBranch.findOne({
+    BankBranch.findOne({
       bankName: bankName,
       'location.division': division,
       'location.district': district,

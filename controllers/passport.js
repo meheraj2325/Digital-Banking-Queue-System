@@ -12,7 +12,7 @@ module.exports = function(passport) {
       // Match user
     //   console.log("Checking request")
     //   console.log(req.body)
-      await BankBranch.findOne({
+      BankBranch.findOne({
         bankName: bankName,
         'location.division': req.body.division,
         'location.district': req.body.district,
